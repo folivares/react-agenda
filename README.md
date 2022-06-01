@@ -4,6 +4,32 @@
 
 [Documentation and examples](https://folivares.github.io/react-agenda)
 
+### Setup
+
+Install package:
+
+```
+npm install f-react-agenda
+```
+
+Import component:
+
+```js
+import { Agenda } from 'f-react-calendar';
+```
+
+Use React-Agenda:
+
+```js
+<Agenda
+    startTime={600}
+    endTime={900}
+    firstDay={1}
+    daysNumber={7}
+    locale="en-US"
+/>
+```
+
 ### Features overview
 
 - _Multiple views_: day, week or custom range of days.

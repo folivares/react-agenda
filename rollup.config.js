@@ -3,7 +3,7 @@ import babel from '@rollup/plugin-babel';
 import commonjs from "@rollup/plugin-commonjs";
 import { terser } from "rollup-plugin-terser";
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import scss from 'rollup-plugin-scss'
+import postcss from "rollup-plugin-postcss";
 
 const packageJson = require("./package.json");
 
@@ -29,9 +29,7 @@ export default [
         ]
       }),
       commonjs(),
-      scss({
-        outputStyle: "compressed"
-      }),
+      postcss(),
       terser()
     ],
   }
