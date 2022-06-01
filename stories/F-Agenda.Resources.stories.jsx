@@ -1,3 +1,5 @@
+import './assets/css/style.css';
+
 import React from 'react';
 
 import { Agenda } from '../src';
@@ -12,7 +14,7 @@ export default {
   },
 };
 
-const Template = (args) => <Agenda {...args} />;
+const Template = (args) => <div className='agenda-container'><Agenda {...args} /></div>;
 
 export const Resources = Template.bind({});
 Resources.args = {

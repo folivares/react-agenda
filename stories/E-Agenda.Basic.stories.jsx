@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './assets/css/style.css';
+
 import { Agenda } from '../src';
 
 import { todayEvents, tomorrowEvents, fourDaysFromNowEvents } from './examples/events.js';
@@ -12,7 +14,7 @@ export default {
   },
 };
 
-const Template = (args) => <Agenda {...args} />;
+const Template = (args) => <div className='agenda-container'><Agenda {...args} /></div>;
 
 export const Basic = Template.bind({});
 Basic.args = {
