@@ -1,0 +1,153 @@
+import './assets/css/style.css';
+
+import { Meta } from '@storybook/addon-docs';
+import { linkTo } from '@storybook/addon-links';
+
+<Meta title="Docs/Props" />
+
+# Props
+
+<div className="subheading-2">timeslot</div>
+
+- type: `number`
+- default: `15`
+- possibile values: `from 1 to 60`
+
+The minutes in a single timeslot. Max value: `60`.
+
+<div className="subheading-2">startTime</div>
+
+- type: `number`
+- default: `0`
+- possible values: `from 0 to 1440`
+
+The start time of the day view represented as minutes from midnight.
+
+<div className="subheading-2">endTime</div>
+
+- type: `number`
+- default: `1440`
+- possible values: `from 0 to 1440`
+
+The end time of the day view represented as minutes from midnight.
+
+<div className="subheading-2">locale</div>
+
+- type: `string`
+- default: `undefined`
+
+Locale used to format dates.
+
+<div className="subheading-2">timeZone</div>
+
+- type: `string`
+- default: `undefined`
+
+Timezone used to show time and dates on agenda.<br />[List of timezones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+
+<div className="subheading-2">daysNumber</div>
+
+- type: `number`
+- default: `7`
+- possible values: `1, 2, 3, 4, 5, 6, 7`
+
+Number of days to show on agenda. <br />
+
+<div className="subheading-2">firstDay</div>
+
+- type: `number`
+- default: `1`
+- possible values: `-1, 0, 1, 2, 3, 4, 5, 6`
+
+First day of the range shown in the agenda. Follows the JavaScript *Date.prototype.getDay()* order. [Mozilla reference Date.prototype.getDay()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDay)
+
+If the value is between `0` and `6`, out of range days are skipped when the date changes.
+
+If the value is `-1`, the range of the days is dynamic.
+
+<div className="subheading-2">showPeriodSelector</div>
+
+- type: `boolean`
+- default: `true`
+
+Determines whether or not to show the selection for changing the period in the controls header.
+
+<div className="subheading-2">events</div>
+
+- type: `arrayOf(object)`
+- default: `[]`
+
+List of all event objects to be displayed in the agenda.
+
+Event object:
+
+- id: **(required)** `string` the id of the object
+- title: **(required)**  `string` the title of the event, can contains HTML
+- subtitle: `string` the subtitle of the event, can contains HTML
+- startDate: **(required)** `instanceOf(Date)` Date object with the start time of the event 
+- endDate: **(required)** `instanceOf(Date)` Date object with the end time of the event 
+- resourceId: `string` the id of the resource
+- color: `string` hex color for the background
+
+<div className="subheading-2">resources</div>
+
+- type: `arrayOf(object)`
+- default: `[]`
+
+List of all resource objects to be displayed in the agenda.
+
+Resource object:
+
+- id: **(required)** `string` the id of the resource
+- name: **(required)** `string` the name of the resource
+
+
+<div className="subheading-2">translations</div>
+
+- type: `object`
+- default: `{ todayLabel: 'today', selectViewDayLabel: 'day', selectViewWeekLabel: 'week'}`
+
+Translation labels for the controls header.
+
+Translation object:
+
+- todayLabel: **(required)**  `string` the label for select today button
+- selectViewDayLabel: **(required)**  `string` the label for switch to day view select option
+- selectViewWeekLabel: **(required)** `string` the label for switch to week view select option
+
+<div className="subheading-2">onEventClick</div>
+
+- type: `function`
+- default: `null`
+
+Callback for event card click. Returns the clicked event object `object`.
+
+<div className="subheading-2">onTimeslotClick</div>
+
+- type: `function`
+- default: `null`
+
+Callback for timeslot click. Returns clicked day and minutes from midnight `object`.
+
+Example
+
+```js
+{
+    day: "2022-05-20T14:48:00.000Z",
+    minutes: 670
+}
+```
+
+- day: `Date.prototype.toISOString()` [toISOString](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+- minutes: `number`
+
+<div className="subheading-2">onDateChanged</div>
+
+- type: `function`
+- default: `null`
+
+Callback for date change. Returns the changed date `instanceOf(Date)`.
+
+<br />
+
+Next: <button className="sb-button" onClick={linkTo('Examples/Agenda/Basic')}>Go to "Examples"</button>
