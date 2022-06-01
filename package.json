@@ -1,15 +1,20 @@
 {
-  "name": "react-agenda",
+  "name": "f-react-agenda",
   "version": "0.1.0",
   "description": "Agenda React Component",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/folivares/react-agenda.git"
+  },
+  "author": "Federico Olivares <federico.olivares@live.it>",
+  "license": "MIT",
   "scripts": {
-    "rollup": "rollup -c",
+    "prepublishOnly": "npm run build",
+    "build": "rollup -c",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "jest --verbose"
   },
-  "author": "Federico Olivares <federico.olivares@live.it>",
-  "license": "MIT",
   "peerDependencies": {
     "prop-types": "^15.8.1",
     "react": "^17.0.2"
