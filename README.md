@@ -15,7 +15,7 @@ npm install f-react-agenda
 Import component:
 
 ```js
-import { Agenda } from 'f-react-calendar';
+import { Agenda } from 'f-react-agenda';
 ```
 
 Use React-Agenda:
