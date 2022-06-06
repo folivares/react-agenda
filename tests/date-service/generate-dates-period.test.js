@@ -29,6 +29,37 @@ describe('generateDatesForPeriod() for date: ' + new Date().toDateString() + ' c
 
     const dateService = new DateService()
 
+    test('first day: -1 daysNumber: 1 current date: ' + new Date(), () => {
+
+        const today = new Date()
+        const todayDay = new Date().getDay()
+
+        let expectedResult = new Date()
+
+        const result = dateService.generateDatesForPeriod(-1, 1, new Date())
+        expect(result[0].toDateString()).toBe(expectedResult.toDateString())
+    })
+
+})
+
+describe('generateDatesForPeriod() for a Sunday day: ' + new Date('2022-06-05').toDateString() + ' check if start date is correct', () => {
+
+    const dateService = new DateService()
+
+    test('first day: -1 daysNumber: 1 date: ' + new Date(), () => {
+
+        let expectedResult = new Date('2022-06-05')
+
+        const result = dateService.generateDatesForPeriod(-1, 1, new Date('2022-06-05'))
+        expect(result[0].toDateString()).toBe(expectedResult.toDateString())
+    })
+
+})
+
+describe('generateDatesForPeriod() for date: ' + new Date().toDateString() + ' check if start date is correct', () => {
+
+    const dateService = new DateService()
+
     test('range: [ W T F S S M T ] first day: 3 daysNumber: 7 current date: ' + new Date(), () => {
 
         const today = new Date()

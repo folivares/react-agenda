@@ -6,12 +6,17 @@ describe('getAgendaStartDay()', () => {
 
     test('range: [ W T F S S M T ] first day: 3 daysNumber: 7 current date: ' + new Date(), () => {
 
-        const today = new Date()
-        const todayDay = new Date().getDay()
-
         let expectedResult = new Date()
 
         const result = dateService.getAgendaStartDay(3, 7)
+        expect(result.toDateString()).toBe(expectedResult.toDateString())
+    })
+
+    test('first day: -1 daysNumber: 1 current date: ' + new Date(), () => {
+
+        let expectedResult = new Date()
+
+        const result = dateService.getAgendaStartDay(-1, 1)
         expect(result.toDateString()).toBe(expectedResult.toDateString())
     })
 
