@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import './TimeSlot.scss';
 import { DEFAULT_TIMESLOT_VALUE } from "../../utils/constants";
-import { calculateMinutesFromPosition, calculateMinutesOfTimeslotBlock, calculatePositionFromClick } from "../../utils/helpers";
+import { calculateMinutesOfDayFromTimeSlot, calculateMinutesOfTimeSlotBlock, calculatePositionFromClick } from "../../utils/helpers";
 import AgendaContext from "../AgendaContext";
 
 export default class TimeSlot extends React.Component {
@@ -31,9 +31,9 @@ export default class TimeSlot extends React.Component {
         const timeslotValue = this.calculateTimeslotValue();
         let timeslotBlocks = [];
         for (let i = 0; i < timeslotValue; i++) {
-            const currentTimeslotValue = calculateMinutesOfTimeslotBlock(i, timeslotValue);
+            const currentTimeslotValue = calculateMinutesOfTimeSlotBlock(i, timeslotValue);
             timeslotBlocks.push(
-                <div key={i} className="fra-time-slot-item" onClick={(e) => this.handleClick(e, currentTimeslotValue, this.props.day, this.props.resource)}>
+                <div key={i} className="fra-time-slot-item" onClick={(e) => this.handleClick(e, this.props.time, this.props.timeslot, currentTimeslotValue, this.props.day, this.props.resource)}>
                     {i == 0 && null != this.props.timeLabel && (
                         <span className="fra-time-slot-label">{this.props.timeLabel}</span>
                     )
@@ -44,14 +44,15 @@ export default class TimeSlot extends React.Component {
         return timeslotBlocks;
     }
 
-    
-    handleClick(e, timeslotMinutes, day, resource = null) {
-        const { startTime, onTimeslotClick } = this.context;
+
+    handleClick(e, timeslotGroupStartTime, timeslotSingleBlockMinutes, timeslotCurrentBlockMinutes, day, resource = null) {
+        const { onTimeslotClick } = this.context;
+        const y = calculatePositionFromClick(e);
+        const minutes = calculateMinutesOfDayFromTimeSlot(timeslotGroupStartTime, timeslotSingleBlockMinutes, timeslotCurrentBlockMinutes, y);
         if (!!onTimeslotClick) {
-            const y = calculatePositionFromClick(e);
-            const minutes = calculateMinutesFromPosition(y, startTime);
             onTimeslotClick({
-                timeslotMinutes,
+                timeslotGroupMinutes: timeslotGroupStartTime,
+                timeslotBlockMinutes: timeslotSingleBlockMinutes,
                 day: day.toISOString(),
                 minutes,
                 resource

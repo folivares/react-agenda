@@ -1,7 +1,12 @@
 import { MINUTES_IN_HOUR } from "./constants";
 
-export const calculateMinutesOfTimeslotBlock = (blockIndex, totalBlocks) => {
+export const calculateMinutesOfTimeSlotBlock = (blockIndex, totalBlocks) => {
     return Math.round(((blockIndex + 1) / totalBlocks) * MINUTES_IN_HOUR);
+}
+
+export const calculateMinutesOfDayFromTimeSlot = (timeslotGroupStartTime, timeslotSingleBlockMinutes, timeslotCurrentBlockMinutes, currentPosition) => {
+    const minutesInBlock = timeslotCurrentBlockMinutes - (timeslotSingleBlockMinutes - currentPosition);
+    return timeslotGroupStartTime + minutesInBlock;
 }
 
 export const calculatePositionFromClick = (clickEvent) => {
