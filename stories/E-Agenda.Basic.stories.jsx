@@ -29,25 +29,29 @@ BasicTimeRange.args = {
 export const BasicSingleDay = Template.bind({});
 BasicSingleDay.args = {
   firstDay: -1,
-  daysNumber: 1
+  daysNumber: 1,
+  showPeriodSelector: false
 };
 
 export const BasicDaysRangeFixed = Template.bind({});
 BasicDaysRangeFixed.args = {
   firstDay: 3,
-  daysNumber: 4
+  daysNumber: 4,
+  showPeriodSelector: false
 };
 
 export const BasicDaysRangeDynamic = Template.bind({});
 BasicDaysRangeDynamic.args = {
   firstDay: -1,
-  daysNumber: 4
+  daysNumber: 4,
+  showPeriodSelector: false
 };
 
 export const BasicOnlyFriday = Template.bind({});
 BasicOnlyFriday.args = {
   firstDay: 5,
-  daysNumber: 1
+  daysNumber: 1,
+  showPeriodSelector: false
 };
 
 export const BasicWithEvents = Template.bind({});
@@ -68,6 +72,6 @@ BasicWithEventsAndActions.args = {
   endTime: 900,
   events: [...todayEvents, ...tomorrowEvents, ...fourDaysFromNowEvents],
   onEventClick: (eventClicked) => (alert(`event: ${eventClicked.id} - ${eventClicked.title} - ${eventClicked.subtitle}`)),
-  onTimeslotClick: (timeslotClicked) => (alert(`day: ${timeslotClicked.day} - minutes: ${timeslotClicked.minutes}`)),
+  onTimeslotClick: (timeslotClicked) => (alert(`timeslotGroupMinutes: ${timeslotClicked.timeslotGroupMinutes} - timeslotBlockMinutes: ${timeslotClicked.timeslotBlockMinutes} - day: ${timeslotClicked.day} - minutes: ${timeslotClicked.minutes} - resource: ${JSON.stringify(timeslotClicked.resource)}`)),
   onDateChanged: (dateChanged) => (alert(`date: ${dateChanged}`)),
 };

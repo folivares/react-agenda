@@ -133,13 +133,19 @@ Example
 
 ```js
 {
-    day: "2022-05-20T14:48:00.000Z",
-    minutes: 670
+    timeslotGroupMinutes: 540,
+    timeslotBlockMinutes: 15,
+    day: "2022-05-20T13:43:52.000Z",
+    minutes: 670,
+    resource: { id: 1, name: "Room A"}
 }
 ```
 
+- timeslotGroupMinutes `number` minutes of clicked timeSlot group
+- timeslotBlockMinutes `number` minutes of clicked timeSlot block
 - day: `Date.prototype.toISOString()` [toISOString](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
 - minutes: `number`
+- resource: `object` the resource associated to the column that contains the clicked timeslot
 
 <div className="subheading-2">onDateChanged</div>
 

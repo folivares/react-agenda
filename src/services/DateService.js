@@ -98,7 +98,8 @@ export default class DateService {
      */
     generateDatesForPeriod = (firstDay, daysNumber, currentDate) => {
         let dates = [];
-        let currentDay = firstDay < 0 ? 0 : currentDate.getDay();
+        let currentDay = currentDate.getDay();
+        firstDay = firstDay < 0 ? currentDay : firstDay;
         const todayDay = this.getToday().getDay();
 
         if (this.isDayInDatesRange(todayDay, firstDay, daysNumber) && currentDay == todayDay) {
