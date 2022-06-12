@@ -72,6 +72,6 @@ BasicWithEventsAndActions.args = {
   endTime: 900,
   events: [...todayEvents, ...tomorrowEvents, ...fourDaysFromNowEvents],
   onEventClick: (eventClicked) => (alert(`event: ${eventClicked.id} - ${eventClicked.title} - ${eventClicked.subtitle}`)),
-  onTimeslotClick: (timeslotClicked) => (alert(`day: ${timeslotClicked.day} - minutes: ${timeslotClicked.minutes}`)),
+  onTimeslotClick: (timeslotClicked) => (alert(`timeslotGroupMinutes: ${timeslotClicked.timeslotGroupMinutes} - timeslotBlockMinutes: ${timeslotClicked.timeslotBlockMinutes} - day: ${timeslotClicked.day} - minutes: ${timeslotClicked.minutes} - resource: ${JSON.stringify(timeslotClicked.resource)}`)),
   onDateChanged: (dateChanged) => (alert(`date: ${dateChanged}`)),
 };
