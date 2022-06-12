@@ -1,3 +1,9 @@
+import { MINUTES_IN_HOUR } from "./constants";
+
+export const calculateMinutesOfTimeslotBlock = (blockIndex, totalBlocks) => {
+    return Math.round(((blockIndex + 1) / totalBlocks) * MINUTES_IN_HOUR);
+}
+
 export const calculatePositionFromClick = (clickEvent) => {
     let rect = clickEvent.currentTarget.getBoundingClientRect();
     let y = clickEvent.clientY - rect.top;

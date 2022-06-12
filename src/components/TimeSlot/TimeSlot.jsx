@@ -2,8 +2,12 @@ import React from "react";
 import PropTypes from 'prop-types';
 import './TimeSlot.scss';
 import { DEFAULT_TIMESLOT_VALUE } from "../../utils/constants";
+import { calculateMinutesFromPosition, calculateMinutesOfTimeslotBlock, calculatePositionFromClick } from "../../utils/helpers";
+import AgendaContext from "../AgendaContext";
 
 export default class TimeSlot extends React.Component {
+
+    static contextType = AgendaContext;
 
     constructor(props) {
         super(props)
@@ -27,8 +31,9 @@ export default class TimeSlot extends React.Component {
         const timeslotValue = this.calculateTimeslotValue();
         let timeslotBlocks = [];
         for (let i = 0; i < timeslotValue; i++) {
+            const currentTimeslotValue = calculateMinutesOfTimeslotBlock(i, timeslotValue);
             timeslotBlocks.push(
-                <div key={i} className="fra-time-slot-item">
+                <div key={i} className="fra-time-slot-item" onClick={(e) => this.handleClick(e, currentTimeslotValue, this.props.day, this.props.resource)}>
                     {i == 0 && null != this.props.timeLabel && (
                         <span className="fra-time-slot-label">{this.props.timeLabel}</span>
                     )
@@ -37,6 +42,21 @@ export default class TimeSlot extends React.Component {
             );
         }
         return timeslotBlocks;
+    }
+
+    
+    handleClick(e, timeslotMinutes, day, resource = null) {
+        const { startTime, onTimeslotClick } = this.context;
+        if (!!onTimeslotClick) {
+            const y = calculatePositionFromClick(e);
+            const minutes = calculateMinutesFromPosition(y, startTime);
+            onTimeslotClick({
+                timeslotMinutes,
+                day: day.toISOString(),
+                minutes,
+                resource
+            });
+        }
     }
 
     render() {
@@ -52,5 +72,10 @@ export default class TimeSlot extends React.Component {
 TimeSlot.propTypes = {
     time: PropTypes.number,
     timeslot: PropTypes.number,
-    timeLabel: PropTypes.string
+    timeLabel: PropTypes.string,
+    day: PropTypes.instanceOf(Date),
+    resource: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired
+    }),
 }

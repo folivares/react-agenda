@@ -1,7 +1,6 @@
 import React from "react";
 import './Events.scss';
 import { MINUTES_IN_HOUR } from "../../utils/constants";
-import { calculateMinutesFromPosition, calculatePositionFromClick } from "../../utils/helpers";
 import AgendaContext from "../AgendaContext";
 import EventCard from "../EventCard";
 
@@ -62,22 +61,10 @@ export default class Events extends React.Component {
         return eventCards
     }
 
-    onTimeslotClick(e, day) {
-        const { startTime, onTimeslotClick } = this.context;
-        if (!!onTimeslotClick) {
-            const y = calculatePositionFromClick(e);
-            const minutes = calculateMinutesFromPosition(y, startTime);
-            onTimeslotClick({
-                day: day.toISOString(),
-                minutes
-            });
-        }
-    }
-
     render() {
 
         return (
-            <div className="fra-events-container" onClick={(e) => this.onTimeslotClick(e, this.props.date)}>
+            <div className="fra-events-container">
                 {this.generateEventCards()}
             </div>
         )
